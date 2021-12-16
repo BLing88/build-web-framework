@@ -7,11 +7,11 @@ interface Identifiable {
 export class Sync<T extends Identifiable> {
   constructor(public rootUrl: string) {}
 
-  fetch(id: number): AxiosPromise<T> {
+  fetch = (id: number): AxiosPromise<T> => {
     return axios.get(`${this.rootUrl}/${id}`);
-  }
+  };
 
-  save(data: T): AxiosPromise<T> {
+  save = (data: T): AxiosPromise<T> => {
     const { id } = data;
 
     if (id) {
@@ -19,5 +19,5 @@ export class Sync<T extends Identifiable> {
     } else {
       return axios.post(this.rootUrl, data);
     }
-  }
+  };
 }
